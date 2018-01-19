@@ -1,5 +1,6 @@
 class SkillsController < ApplicationController
   before_action :set_skill, only: [:show, :update, :destroy]
+  before_action :authenticate_user
 
   # GET /skills
   def index
