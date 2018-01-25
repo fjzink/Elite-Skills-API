@@ -8,7 +8,9 @@ Skill.delete_all
 
   Group.create(group: Faker::Job.field, description: Faker::Lorem.sentence, user_id: id+1)
 
-  Skill.create(skill: Faker::Job.key_skill, description: Faker::Lorem.sentence, data: Faker::Number.decimal(2), measurement_unit: Faker::Science.element, group_id: id+1)
+  Skill.create(skill: Faker::Job.key_skill, description: Faker::Lorem.sentence, measurement_unit: Faker::Science.element, group_id: id+1)
+
+  Metric.create(data: Faker::Number.decimal(2), skill_id: id+1)
 end
 
 joey = User.new(username: "joey", email: "joey@joey.com", password: "joey")
@@ -18,5 +20,8 @@ joey.save
   group = Group.new(group: Faker::Job.field, description: Faker::Lorem.sentence, user: joey)
   group.save
 
-  Skill.create(skill: Faker::Job.key_skill, description: Faker::Lorem.sentence, data: Faker::Number.decimal(2), measurement_unit: Faker::Science.element, group: group)
+  skill = Skill.new(skill: Faker::Job.key_skill, description: Faker::Lorem.sentence, measurement_unit: Faker::Science.element, group: group)
+  skill.save
+
+  Metric.create(data: Faker::Number.decimal(2), skill: skill)
 end
