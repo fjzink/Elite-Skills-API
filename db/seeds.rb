@@ -10,3 +10,13 @@ Skill.delete_all
 
   Skill.create(skill: Faker::Job.key_skill, description: Faker::Lorem.sentence, data: Faker::Number.decimal(2), measurement_unit: Faker::Science.element, group_id: id+1)
 end
+
+joey = User.new(username: "joey", email: "joey@joey.com", password: "joey")
+joey.save
+
+5.times do
+  group = Group.new(group: Faker::Job.field, description: Faker::Lorem.sentence, user: joey)
+  group.save
+
+  Skill.create(skill: Faker::Job.key_skill, description: Faker::Lorem.sentence, data: Faker::Number.decimal(2), measurement_unit: Faker::Science.element, group: group)
+end
