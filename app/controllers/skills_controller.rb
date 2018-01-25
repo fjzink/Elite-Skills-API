@@ -4,7 +4,13 @@ class SkillsController < ApplicationController
 
   # GET /skills
   def index
-    @skills = Skill.all
+    group = params[:group_id]
+
+    if group
+      @skills = Skill.where(group_id: group)
+    else
+      @skills = Skill.all
+    end
 
     render json: @skills
   end
