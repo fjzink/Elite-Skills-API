@@ -23,5 +23,7 @@ joey.save
   skill = Skill.new(skill: Faker::Job.key_skill, description: Faker::Lorem.sentence, measurement_unit: Faker::Science.element, group: group)
   skill.save
 
-  Metric.create(data: Faker::Number.decimal(2), skill: skill)
+  30.times do |i|
+    Metric.create(data: Faker::Number.decimal(2), skill: skill, created_at: Date.today + i, updated_at: Date.today + i)
+  end
 end
