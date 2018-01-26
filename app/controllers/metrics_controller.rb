@@ -4,7 +4,13 @@ class MetricsController < ApplicationController
 
   # GET /metrics
   def index
-    @metrics = Metric.all
+    skill = params[:skill_id]
+
+    if skill
+      @metrics = Metric.where(skill_id: skill)
+    else
+      @metrics = Metric.all
+    end
 
     render json: @metrics
   end
